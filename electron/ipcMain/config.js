@@ -23,9 +23,10 @@ ipcMain.on('setConfig', (event, arg) => {
 ipcMain.on('getMouses', (event, arg) => {
   console.log(arg);
   let MouseRootPath = arg;
-  if (fs.existsSync(MouseRootPath) === true) {
+  if (fs.existsSync(MouseRootPath)) {
     event.returnValue = fs.readdirSync(MouseRootPath);
   }
+  event.returnValue = [];
 });
 ipcMain.on('getMouseConfig', (event, arg) => {
   // 一个文件需要的内容包括
@@ -64,6 +65,10 @@ ipcMain.on('getMouseConfig', (event, arg) => {
   }
   event.returnValue = 'true';
 });
+// ipcMain.on('refreshMouse',event => {
+//   let MouseRootPath = arg;
+
+// })
 // console.log('运行hello');
 module.exports = {
   config: 'config set'
