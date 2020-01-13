@@ -1,1 +1,17 @@
-{"mouseRootPath":"路径"}
+{
+    "MouseRootPath":"F:\\GitHub\\cursorvue\\mouse",
+    "CurrentChooseMouse": "Apostle",
+    "Mouses":[
+        {
+            "name":"Apostle",
+            "description": "描述",
+            "publisher": "发布者",
+            "author": "author",
+            "created": "发布时间",
+            "updated": "更新时间",
+            "choosed": true,
+            "invalid": false,
+            "verify": true
+        }
+    ]
+}
