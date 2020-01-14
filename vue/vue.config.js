@@ -1,15 +1,5 @@
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? '.' : '.',
-  pages: {
-    index: {
-      entry: 'vue/src/main.js',
-      template: "vue/public/index.html",
-      filename: 'index.html',
-      // title: 'Index Page',
-      // chunks: ['chunk-vendors','chunk-common','index']
-    },
-    // subpage: 'src/subpage/main.js'
-  },
   css: {
     // extract: false // 将组件css提取到一个单独的css文件，只用在生产环境;
   },

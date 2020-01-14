@@ -1,5 +1,5 @@
 // In main process.
-const { ipcMain } = require('electron');
+const { ipcMain,shell } = require('electron');
 const { execFile } = require('child_process');
 const path = require('path');
 const exePath = path.join(__dirname, '../exe');
@@ -20,6 +20,15 @@ ipcMain.on('setMouse', (event, arg) => {
     console.log(stdout, stderr);
   });
 });
+ipcMain.on('openFile', (event, arg) => {
+  // execFile('explorer.exe',[arg], (err,stdout, stderr) => {
+  //   if(err) {
+  //     throw err;
+  //   }
+  //   console.log(stdout,stderr);
+  // })
+  shell.openItem(arg)
+})
 ipcMain.on('removeMouse', (event, arg) => {
   console.log(arg);
   execFile(exePath + '/Cursor.exe', ['remove'], (err, stdout, stderr) => {

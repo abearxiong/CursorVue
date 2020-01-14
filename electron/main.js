@@ -2,6 +2,7 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 require('./ipcMain');
+// const env = process.env.NODE_ENV || 'production';
 const env = process.env.NODE_ENV || 'development';
 console.log('你正在运行的是环境是', env);
 // Keep a global reference of the window object, if you don't, the window will

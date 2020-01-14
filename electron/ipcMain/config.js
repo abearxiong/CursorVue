@@ -24,7 +24,50 @@ ipcMain.on('getMouses', (event, arg) => {
   console.log(arg);
   let MouseRootPath = arg;
   if (fs.existsSync(MouseRootPath)) {
-    event.returnValue = fs.readdirSync(MouseRootPath);
+    let returnValue =  fs.readdirSync(MouseRootPath, {withFileTypes: true});
+    // console.log("returnValue", returnValue)
+    returnValue = returnValue.filter(item=>{
+      if(item.isDirectory()){
+        return true
+      }else{
+        return false;
+      }
+    })
+    let returnValueName = returnValue.map(item=>item.name)
+    event.returnValue = returnValueName.filter(item=>{
+      let filenames = [
+        'Appstarting',
+        'Arrow',
+        'Crosshair',
+        'cursor',
+        'Hand',
+        'Help',
+        'IBeam',
+        'NO',
+        'NWPen',
+        'Person',
+        'Pin',
+        'SizeAll',
+        'SizeNESW',
+        'SizeNS',
+        'SizeNWSE',
+        'SizeWE',
+        'UpArrow',
+        'Wait'
+      ];
+      let allfiles = fs.readdirSync(MouseRootPath + "\\" + item)
+      let havefiles = allfiles.map(onefile => {
+        return path.basename(onefile, path.extname(onefile));
+      })
+      for(let filename of filenames){
+        if(havefiles.includes(filename)) {
+          continue
+        } else {
+          return false
+        }
+      }
+      return true
+    })
   }
   event.returnValue = [];
 });

@@ -1,23 +1,21 @@
 <template>
   <div class="mouses-list">
-    <el-card v-if="!haveConfig">
-      <el-button @click="onGetRootPath"> 选择路径 </el-button>
-    </el-card>
-    <el-card v-else>
+    <el-card>
       {{ config.MouseRootPath }} <br />
-      <el-button @click="rechangeRootPath">重选路径</el-button>
+      <el-button @click="onGetRootPath">选择路径</el-button>
       <el-button @click="refreshMousesList">刷新鼠标</el-button>
       <el-button @click="removeMouse()">恢复样式</el-button>
     </el-card>
-    <div v-if="config.Mouses" class="mouse-list">
+    <div class="mouse-list">
       <el-card
         class="mouse-list-card"
-        v-for="mouse in config.Mouses"
+        v-for="mouse in mouses"
         :key="mouse.path"
       >
         <img :src="mouse.path + '\\cursor.png'" />
         {{ mouse.name }}
         <el-button @click="setMouse(mouse.path)">设置</el-button>
+        <el-button @click="openFile(mouse.path)">打开</el-button>
       </el-card>
     </div>
   </div>
@@ -35,13 +33,11 @@ export default {
       state: this.$store.state,
       config: this.$store.state.config,
       commit: this.$store.commit,
-      chooseRootPath: ''
+      chooseRootPath: '',
+      mouses: this.$store.state.config.Mouses
     };
   },
   computed: {
-    haveConfig() {
-      return this.config.MouseRootPath;
-    },
     getMouseRootPath() {
       return this.config.MouseRootPath;
     }
@@ -52,17 +48,19 @@ export default {
       console.log('chooseRootPath', chooseRootPath);
       this.commit('SET_MOUSE_ROOT_PATH', chooseRootPath[0]);
     },
-    rechangeRootPath() {
-      this.onGetRootPath();
-    },
     refreshMousesList() {
       // alert('没有写');
       let mouses = ipcRenderer.sendSync('getMouses', this.config.MouseRootPath);
       console.log('获取mouses', mouses);
+      // this.mouses = mouses;
       this.commit('SET_MOUSES', mouses);
+      this.mouses = this.$store.state.config.Mouses;
     },
     setMouse(value) {
       ipcRenderer.send('setMouse', value);
+    },
+    openFile(value) {
+      ipcRenderer.send('openFile', value);
     },
     removeMouse() {
       ipcRenderer.send('removeMouse');
