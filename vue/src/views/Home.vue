@@ -5,7 +5,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import MouseList from '../components/MouseList.vue';
 export default {
   name: 'home',

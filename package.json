@@ -9,7 +9,9 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "bd": "yarn build && electron-builder",
+    "electron:build": "electron-builder",
     "electron": "chcp 65001 &&electron electron/main",
+    "electron:prod": "cross-env NODE_ENV=prod && chcp 65001 &&electron electron/main",
     "packager": "electron-packager . cursorvue --win=x32 --out ./build --arch=x64 --app-version=0.0.1 --ignore=vue --ignore=node_modules --overwrite",
     "pack": "electron-builder --dir",
     "dist": "electron-builder --win --x64",
@@ -24,6 +26,24 @@
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
   },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.12.0",
+    "@vue/cli-plugin-eslint": "^3.12.0",
+    "@vue/cli-service": "^3.12.0",
+    "@vue/eslint-config-prettier": "^5.0.0",
+    "babel-eslint": "^10.0.1",
+    "cross-env": "^7.0.2",
+    "electron": "^8.2.2",
+    "eslint": "^5.16.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.9.2",
+    "prettier": "^1.18.2",
+    "sass": "^1.19.0",
+    "sass-loader": "^8.0.0",
+    "vue-cli-plugin-element": "^1.0.1",
+    "vue-template-compiler": "^2.6.10"
+  },
   "build": {
     "productName": "cursorset",
     "appId": "me.xiongxiao.app",
@@ -34,22 +54,5 @@
     "win": {
       "icon": "./icon.ico"
     }
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.12.0",
-    "@vue/cli-plugin-eslint": "^3.12.0",
-    "@vue/cli-service": "^3.12.0",
-    "@vue/eslint-config-prettier": "^5.0.0",
-    "babel-eslint": "^10.0.1",
-    "electron": "^7.1.9",
-    "eslint": "^5.16.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "node-sass": "^4.9.2",
-    "prettier": "^1.18.2",
-    "sass": "^1.19.0",
-    "sass-loader": "^8.0.0",
-    "vue-cli-plugin-element": "^1.0.1",
-    "vue-template-compiler": "^2.6.10"
   }
 }

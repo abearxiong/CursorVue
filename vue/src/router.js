@@ -5,7 +5,9 @@ import TestIpc from './views/TestIpc.vue';
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
+  // 不能用history，使用history前提条件是后端
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes: [
     {

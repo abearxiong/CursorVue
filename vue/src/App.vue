@@ -1,11 +1,6 @@
 <template>
   <div id="app">
     <div id="app">
-      <!-- <div id="nav" hidden>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link> |
-        <router-link to="/testIpc">测试</router-link>
-      </div> -->
       <router-view />
     </div>
   </div>
@@ -19,9 +14,6 @@ export default {
 </script>
 
 <style>
-body {
-  /* margin: 0px; */
-}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
